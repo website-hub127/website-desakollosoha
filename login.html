@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Admin • Desa Kollo Soha</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ height:100vh;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-family:"Segoe UI",Arial,sans-serif;
+ background:linear-gradient(135deg,#024A86,#0A66A9);
+}
+
+/* LOGIN BOX */
+.login-box{
+ background:white;
+ width:360px;
+ padding:36px;
+ border-radius:18px;
+ box-shadow:0 20px 40px rgba(0,0,0,.25);
+ text-align:center;
+ position:relative;
+}
+.login-box img{
+ width:70px;
+ margin-bottom:14px;
+}
+.login-box h2{
+ margin:10px 0 6px;
+ color:#024A86;
+}
+.login-box p{
+ font-size:14px;
+ color:#64748b;
+ margin-bottom:26px;
+}
+
+input{
+ width:100%;
+ padding:14px;
+ margin-bottom:16px;
+ border-radius:12px;
+ border:1px solid #cbd5e1;
+ font-size:15px;
+}
+
+button{
+ width:100%;
+ padding:14px;
+ background:#024A86;
+ color:white;
+ border:none;
+ border-radius:12px;
+ font-size:16px;
+ font-weight:700;
+ cursor:pointer;
+}
+button:hover{background:#013b6b}
+
+/* TOMBOL BERANDA */
+.back-home{
+ margin-top:14px;
+ background:#e5e7eb;
+ color:#1f2937;
+}
+.back-home:hover{
+ background:#cbd5e1;
+}
+
+.error{
+ color:red;
+ margin-top:12px;
+ font-size:14px;
+ display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+ <img src="logo wakatobi.png">
+ <h2>Login Admin</h2>
+ <p>Website Desa Kollo Soha</p>
+
+ <input type="text" id="user" placeholder="Username">
+ <input type="password" id="pass" placeholder="Password">
+ <button onclick="login()">Masuk</button>
+
+ <!-- TOMBOL KEMBALI KE BERANDA -->
+ <button class="back-home" onclick="window.location.href='index.html'">
+  ← Kembali ke Beranda
+ </button>
+
+ <div id="error" class="error">Username atau password salah</div>
+</div>
+
+<script>
+/* GANTI USER & PASS DI SINI */
+function login(){
+ const u = document.getElementById("user").value;
+ const p = document.getElementById("pass").value;
+
+ // GANTI SESUAI KEINGINAN
+ if(u==="admin" && p==="admin123"){
+   localStorage.setItem("loginAdmin","true"); // ⬅ PENTING
+   window.location.href="admin.html";
+ }else{
+   alert("Username atau Password salah");
+ }
+}
+</script>
+
+</body>
+</html>

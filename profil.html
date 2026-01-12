@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profil Desa • Desa Kollo Soha</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:#f4f6f9;
+    color:#334155;
+}
+
+/* ================= HEADER ================= */
+.topbar{
+    position:fixed;
+    top:0;left:0;right:0;
+    background:#fff;
+    z-index:1000;
+    transition:.3s;
+}
+.topbar.scrolled{
+    background:#024A86;
+    backdrop-filter:blur(8px);
+}
+.topbar-container{
+    max-width:1200px;
+    margin:auto;
+    padding:14px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.brand{display:flex;gap:12px;align-items:center}
+.brand img{width:42px}
+.brand h1{margin:0;font-size:18px;color:#0F4C81}
+.brand span{font-size:12px;color:#64748b}
+.nav-menu{display:flex;gap:12px}
+/* ===== DROPDOWN MENU ===== */
+.dropdown{
+    position:relative;
+}
+
+.dropdown-menu{
+    position:absolute;
+    top:100%;
+    left:0;
+    background:white;
+    min-width:190px;
+    border-radius:10px;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+    display:none;
+    padding:8px 0;
+    z-index:2000;
+}
+
+.dropdown-menu a{
+    display:block;
+    padding:10px 16px;
+    color:#1f2937;
+    text-decoration:none;
+}
+
+.dropdown-menu a:hover{
+    background:#f1f5f9;
+}
+
+.dropdown:hover .dropdown-menu{
+    display:block;
+}
+
+.nav-menu a{
+    text-decoration:none;
+    padding:8px 12px;
+    border-radius:8px;
+    color:#1f2937;
+}
+.nav-menu a:hover{background:#e5e7eb}
+.admin-link{background:#FFD700;font-weight:700}
+
+
+/* ===== HERO PROFIL ===== */
+.hero-profil{
+    background:url('Galeri/profil.jpg') center/cover no-repeat;
+    position:relative;
+    padding:120px 20px 90px;
+    color:white;
+    text-align:center;
+}
+.hero-profil::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.6);
+}
+.hero-profil h2,
+.hero-profil p{
+    position:relative;
+    z-index:1;
+}
+.hero-profil h2{
+    font-size:40px;
+    margin-bottom:10px;
+}
+.hero-profil p{
+    font-size:18px;
+}
+
+/* ===== CONTENT ===== */
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:40px 20px;
+}
+.section{
+    background:white;
+    padding:35px;
+    border-radius:14px;
+    margin-bottom:30px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+.section h2{
+    color:#003366;
+    margin-top:0;
+    border-left:6px solid #024A86;
+    padding-left:14px;
+}
+.section ul{
+    padding-left:20px;
+}
+.section ul li{
+    margin-bottom:8px;
+}
+
+/* ===== VISI MISI ===== */
+.visi{
+    background:#024A86;
+    color:white;
+}
+.visi h2{
+    color:white;
+    border-color:#FFD700;
+}
+.misi ul li{
+    margin-bottom:10px;
+}
+
+/* ===== CONTENT KONTAK ===== */
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+/* ===== CARD ===== */
+.card{
+    background:white;
+    border-radius:14px;
+    padding:30px;
+    margin-bottom:30px;
+    box-shadow:0 4px 14px rgba(0,0,0,.1);
+}
+.card h3{
+    margin-top:0;
+    margin-bottom:20px;
+    color:#024A86;
+    border-left:6px solid #024A86;
+    padding-left:14px;
+}
+
+/* ===== KONTAK GRID ===== */
+.contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+.contact-item{
+    display:flex;
+    gap:15px;
+    background:#f1f5f9;
+    padding:18px;
+    border-radius:10px;
+}
+.contact-item span{
+    font-size:26px;
+}
+.contact-item strong{
+    display:block;
+    color:#024A86;
+    margin-bottom:4px;
+}
+
+/* ===== FORM ===== */
+.form-box{
+    text-align:center;
+}
+.form-box a{
+    display:inline-block;
+    margin:20px 0;
+    padding:14px 28px;
+    background:#024A86;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:600;
+}
+.form-box a:hover{
+    background:#013b6b;
+}
+.qr img{
+    width:200px;
+    border-radius:10px;
+    margin-top:10px;
+}
+
+/* ===== MAP ===== */
+.map iframe{
+    width:100%;
+    height:360px;
+    border:none;
+    border-radius:12px;
+}
+.map a{
+    display:inline-block;
+    margin-top:18px;
+    background:#024A86;
+    color:white;
+    padding:12px 22px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:600;
+}
+
+/* ================= FOOTER (DIGITALDESA STYLE) ================= */
+footer{
+    background:#024A86;
+    color:white;
+    padding:50px 20px 30px;
+}
+.footer-container{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+.footer-box h4{
+    margin-top:0;
+    color:white;
+}
+.footer-box p{
+    line-height:1.7;
+}
+.footer-link a{
+    display:block;
+    color:white;
+    text-decoration:underline;
+    margin-bottom:10px;
+}
+.footer-social a{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:white;
+    text-decoration:none;
+    margin-bottom:10px;
+}
+.footer-social img{width:18px}
+.footer-bottom{
+    text-align:center;
+    margin-top:30px;
+    font-size:14px;
+    opacity:.9;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="topbar">
+<div class="topbar-container">
+    <div class="brand">
+        <img src="logo wakatobi.png">
+        <div class="brand-text">
+            <h1>Desa Kollo Soha</h1>
+            <span>Kecamatan Tomia · Kabupaten Wakatobi</span>
+        </div>
+    </div>
+    <nav class="nav-menu">
+        <a href="index.html">Beranda</a>
+        <a href="profil.html" class="active">Profil</a>
+        <a href="infografis.html">Infografis</a>
+<div class="dropdown">
+        <a href="pemerintahan.html">Pemerintahan ▾</a>
+        <div class="dropdown-menu">
+            <a href="pemerintahan.html">Pemerintahan Desa</a>
+            <a href="bumdes.html">BUMDes</a>
+        </div>
+    </div>       
+    <div class="dropdown">
+        <a href="potensi.html">Potensi ▾</a>
+        <div class="dropdown-menu">
+            <a href="wisata.html">Wisata Desa</a>
+            <a href="umkm.html">UMKM Desa</a>
+        </div>
+    </div>
+        <a href="admin.html" class="admin-link">Admin</a>
+    </nav>
+</div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero-profil">
+<h2>Profil Desa Kollo Soha</h2>
+<p>Kecamatan Tomia · Kabupaten Wakatobi</p>
+</section>
+
+<!-- ===== CONTENT ===== -->
+<div class="container">
+
+<div class="section">
+<h2>Profil Desa</h2>
+<p>
+Desa Kollo Soha merupakan salah satu desa yang terletak di Kecamatan Tomia,
+Kabupaten Wakatobi. Desa ini dikenal dengan kekayaan alam, budaya yang masih
+terjaga, serta masyarakat yang menjunjung tinggi nilai gotong royong.
+</p>
+<p>
+Secara geografis, Desa Kollo Soha berada di wilayah strategis Pulau Tomia,
+dengan lanskap alam yang indah serta potensi perikanan dan wisata bahari.
+</p>
+</div>
+
+<div class="section">
+<h2>Sejarah Desa</h2>
+<p>
+Desa Kollo Soha terletak di Kecamatan Tomia, Kabupaten Wakatobi, Sulawesi Tenggara, dan dikenal sebagai jalur pelabuhan kapal. Desa ini memiliki luas wilayah sekitar 177,875 Ha, yang terbagi menjadi dua dusun, yaitu Dusun Soha dengan luas 108,621 Ha dan Dusun Wangkuudu dengan luas 69,254 Ha.
+</p>
+<p> Topografi Desa Kollo Soha sebagian besar terdiri dari wilayah perbukitan dan dataran tinggi, dengan beberapa bagian berupa dataran rendah dan daerah pesisir. Meskipun belum ada data analisis geomorfologi dan jenis tanah secara resmi, masyarakat setempat mengindikasikan bahwa lahan di desa ini memiliki ekosistem lahan berbatuan dengan sedikit tanah kering. Hal ini dapat memengaruhi potensi pertanian dan penggunaan lahan di wilayah tersebut.
+</p>
+<p> Iklim di Desa Kollo Soha mengikuti pola iklim tropis yang umum di Indonesia, dengan musim penghujan berlangsung dari bulan Desember hingga April, dan musim kemarau dari Mei hingga November. Perubahan musim ini secara langsung memengaruhi pola tanam dan mata pencaharian masyarakat, yang harus beradaptasi dengan kondisi cuaca yang berbeda sepanjang tahun.
+</p>
+<p> Jenis vegetasi yang banyak ditanam oleh warga meliputi jambu dan singkong. Selain itu, terdapat beberapa jenis sayuran seperti sawi, jagung, cabai, dan kangkung, meskipun jumlahnya terbatas. Hal ini menunjukkan keragaman kegiatan pertanian yang ada di Desa Kollo Soha. Desa Kollo Soha juga merupakan desa nelayan. Sebagian besar penduduk di desa ini bekerja sebagai nelayan. Desa ini pun merupakan penghasil ikan kering "rengka", yang bisa dijadikan oleh-oleh.
+</p>
+</div>
+
+<div class="section">
+<h2>Letak Geografis</h2>
+<ul>
+<li>Wilayah: Pulau Tomia, Kabupaten Wakatobi</li>
+<li>Luas wilayah: 1,22 km²</li>
+<li>Batas wilayah:
+    <ul>
+        <li>Utara: Kelurahan Waha</li>
+        <li>Selatan: Desa Waiti Timur</li>
+        <li>Timur: Desa Kahianga</li>
+        <li>Barat: Laut Banda</li>
+    </ul>
+</li>
+</ul>
+</div>
+
+<div class="section visi">
+<h2>Visi Desa</h2>
+<p>
+“Mewujudkan Desa Kollo Soha yang mandiri, sejahtera, berbudaya,
+dan berdaya saing berbasis potensi kelautan dan gotong royong.”
+</p>
+</div>
+
+<div class="section misi">
+<h2>Misi Desa</h2>
+<ul>
+<li>Meningkatkan kualitas pelayanan publik yang transparan dan akuntabel.</li>
+<li>Mengembangkan potensi kelautan, perikanan, dan UMKM desa.</li>
+<li>Meningkatkan kualitas sumber daya manusia melalui pendidikan dan pelatihan.</li>
+<li>Melestarikan adat istiadat dan nilai budaya lokal.</li>
+<li>Mendorong partisipasi masyarakat dalam pembangunan desa.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Kondisi Sosial & Budaya</h2>
+<p>
+Masyarakat Desa Kollo Soha dikenal ramah, religius, serta aktif dalam
+kegiatan sosial dan budaya. Nilai kebersamaan dan gotong royong masih
+menjadi fondasi kehidupan bermasyarakat.
+</p>
+</div>
+
+<div class="section">
+<h2>Demografi Penduduk</h2>
+<ul>
+<li>Jumlah penduduk: 557 jiwa</li>
+<li>Jumlah kepala keluarga: 163 KK</li>
+<li>Mata pencaharian utama: Nelayan, Petani, UMKM</li>
+</ul>
+</div>
+
+<!-- ===== CONTENT KONTAK ===== -->
+
+<!-- KONTAK -->
+<div class="card">
+<h3>Kontak Kami</h3>
+
+<div class="contact-grid">
+    <div class="contact-item">
+        <span>📍</span>
+        <div>
+            <strong>Alamat Kantor Desa</strong>
+            <p>Desa Kollo Soha, Kecamatan Tomia, Kabupaten Wakatobi</p>
+        </div>
+    </div>
+
+    <div class="contact-item">
+        <span>📧</span>
+        <div>
+            <strong>Email Resmi</strong>
+            <p>desakollosoha400@gmail.com</p>
+        </div>
+    </div>
+
+    <div class="contact-item">
+        <span>📞</span>
+        <div>
+            <strong>Nomor Telepon</strong>
+            <p>0823-4666-7030</p>
+        </div>
+    </div>
+
+    <div class="contact-item">
+        <span>🕒</span>
+        <div>
+            <strong>Jam Pelayanan</strong>
+            <p>Senin – Jumat, 07.00 – 15.00 WITA</p>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- FORM -->
+<div class="card form-box">
+<h3>Form Pengaduan Masyarakat</h3>
+<p>
+Pemerintah Desa Kollo Soha menyediakan layanan pengaduan dan aspirasi
+masyarakat secara daring untuk meningkatkan kualitas pelayanan publik.
+</p>
+
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSfWSRK3OUBQNDZyyvuj5ZwMA9LNM5XTtI7ludop3n5lCbTJzg/viewform" target="_blank">
+Isi Form Pengaduan Online
+</a>
+
+<div class="qr">
+<p>Atau scan QR Code berikut:</p>
+<img src="QR .png" alt="QR Form Pengaduan">
+</div>
+</div>
+
+    <!-- MAP -->
+    <div class="card map">
+        <h2>Peta Lokasi Kantor Desa</h2>
+
+        <p>
+            <strong>Kantor Desa Kollo Soha</strong><br>
+            Desa Kollo Soha, Kecamatan Tomia, Kabupaten Wakatobi, Sulawesi Tenggara
+        </p>
+
+        <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248.11440863039917!2d123.89959628663281!3d-5.737528406339444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2da71b4232251c05%3A0xaeaded895e9fc3c4!2sKollo%20Soha%2C%20Tomia%2C%20Wakatobi!5e0!3m2!1sen!2sus!4v1766594644043!5m2!1sen!2sus"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+
+        <p style="text-align:center; margin-top:20px;">
+            <a href="https://www.google.com/maps?q=-5.737528406339444,123.89959628663281" target="_blank">
+                📍 Buka Lokasi di Google Maps
+            </a>
+        </p>
+    </div>
+
+</div>
+
+
+<!-- ===== FOOTER ===== -->
+<footer>
+<div class="footer-container">
+    <div class="footer-box">
+        <img src="logo wakatobi.png" width="60"><br><br>
+        <strong>Pemerintah Desa Kollo Soha</strong>
+        <p>Desa Kollo Soha, Kecamatan Tomia<br>Kabupaten Wakatobi<br>Sulawesi Tenggara</p>
+        <p><strong>Kode Wilayah:</strong> 74.07.03.2018</p>
+    </div>
+
+    <div class="footer-box">
+        <h4>Hubungi Kami</h4>
+        <p>📞 0823 4666 7030<br>
+           ✉️ desakollosoha400@gmail.com</p>
+    </div>
+
+    <div class="footer-box footer-link">
+        <h4>Jelajahi</h4>
+        <a href="https://www.facebook.com/profile.php?id=100083826504652">Facebook Desa Kollo Soha</a>
+        <a href="https://www.instagram.com/desakollosoha.tomia?igsh=MnFkaDY4ZWF2YnBj">Instagram Desa Kollo Soha</a>
+    </div>
+</div>
+
+<div class="footer-bottom">
+© 2026 Powered by Desa Kollo Soha
+</div>
+</footer>
+
+<script>
+/* HEADER SCROLL */
+const header=document.querySelector('.topbar');
+window.addEventListener('scroll',()=>{
+    header.classList.toggle('scrolled',window.scrollY>80);
+});
+</script>
+
+</body>
+</html>

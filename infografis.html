@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infografis Penduduk • Desa Kollo Soha</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:#f4f6f9;
+    color:#334155;
+}
+
+/* ================= HEADER (JANGAN DIUBAH) ================= */
+.topbar{
+    position:fixed;
+    top:0;left:0;right:0;
+    background:#fff;
+    z-index:1000;
+    transition:.3s;
+}
+.topbar.scrolled{background:#024A86}
+.topbar-container{
+    max-width:1200px;margin:auto;
+    padding:14px 20px;
+    display:flex;justify-content:space-between;align-items:center
+}
+.brand{display:flex;gap:12px;align-items:center}
+.brand img{width:42px}
+.brand h1{margin:0;font-size:18px;color:#0F4C81}
+.brand span{font-size:12px;color:#64748b}
+.nav-menu{display:flex;gap:12px}
+/* ===== DROPDOWN MENU ===== */
+.dropdown{
+    position:relative;
+}
+
+.dropdown-menu{
+    position:absolute;
+    top:100%;
+    left:0;
+    background:white;
+    min-width:190px;
+    border-radius:10px;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+    display:none;
+    padding:8px 0;
+    z-index:2000;
+}
+
+.dropdown-menu a{
+    display:block;
+    padding:10px 16px;
+    color:#1f2937;
+    text-decoration:none;
+}
+
+.dropdown-menu a:hover{
+    background:#f1f5f9;
+}
+
+.dropdown:hover .dropdown-menu{
+    display:block;
+}
+
+.nav-menu a{
+    text-decoration:none;
+    padding:8px 12px;
+    border-radius:8px;
+    color:#1f2937;
+}
+.nav-menu a:hover{background:#e5e7eb}
+.admin-link{background:#FFD700;font-weight:700}
+
+/* ================= CONTENT ================= */
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:120px 20px 40px;
+}
+h2{color:#003366;margin-bottom:20px}
+
+/* ================= STAT CARD ================= */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:20px;margin-bottom:40px
+}
+.stat-card{
+    background:white;
+    padding:24px;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+}
+.stat-card img{width:56px}
+.stat-card h3{margin:0;font-size:30px;color:#024A86}
+.stat-card p{margin:0;font-weight:600}
+
+/* ================= SECTION ================= */
+.section{
+    background:white;
+    padding:30px;
+    border-radius:16px;
+    margin-bottom:30px;
+    box-shadow:0 4px 14px rgba(0,0,0,.06);
+}
+
+/* ================= CHART ================= */
+.chart-box{max-width:900px;margin:auto}
+
+/* ================= FOOTER (DIGITALDESA STYLE) ================= */
+footer{
+    background:#024A86;
+    color:white;
+    padding:50px 20px 30px;
+}
+.footer-container{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+.footer-box h4{
+    margin-top:0;
+    color:white;
+}
+.footer-box p{
+    line-height:1.7;
+}
+.footer-link a{
+    display:block;
+    color:white;
+    text-decoration:underline;
+    margin-bottom:10px;
+}
+.footer-social a{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:white;
+    text-decoration:none;
+    margin-bottom:10px;
+}
+.footer-social img{width:18px}
+.footer-bottom{
+    text-align:center;
+    margin-top:30px;
+    font-size:14px;
+    opacity:.9;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="topbar">
+<div class="topbar-container">
+    <div class="brand">
+        <img src="logo wakatobi.png">
+        <div>
+            <h1>Desa Kollo Soha</h1>
+            <span>Kecamatan Tomia · Kabupaten Wakatobi</span>
+        </div>
+    </div>
+    <nav class="nav-menu">
+        <a href="index.html">Beranda</a>
+        <a href="profil.html" class="active">Profil</a>
+        <a href="infografis.html">Infografis</a>
+<div class="dropdown">
+        <a href="pemerintahan.html">Pemerintahan ▾</a>
+        <div class="dropdown-menu">
+            <a href="pemerintahan.html">Pemerintahan Desa</a>
+            <a href="bumdes.html">BUMDes</a>
+        </div>
+    </div>       
+    <div class="dropdown">
+        <a href="potensi.html">Potensi ▾</a>
+        <div class="dropdown-menu">
+            <a href="wisata.html">Wisata Desa</a>
+            <a href="umkm.html">UMKM Desa</a>
+        </div>
+    </div>
+        <a href="admin.html" class="admin-link">Admin</a>
+
+    </nav>
+</div>
+</header>
+
+<div class="container">
+
+<h2>Jumlah Penduduk dan Kepala Keluarga</h2>
+<div class="stats">
+    <div class="stat-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png">
+        <div><h3 id="totalPenduduk">0</h3><p>Total Penduduk</p></div>
+    </div>
+    <div class="stat-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/921/921347.png">
+        <div><h3 id="totalKK">0</h3><p>Kepala Keluarga</p></div>
+    </div>
+    <div class="stat-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png">
+        <div><h3 id="laki">0</h3><p>Laki-laki</p></div>
+    </div>
+    <div class="stat-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/4140/4140051.png">
+        <div><h3 id="perempuan">0</h3><p>Perempuan</p></div>
+    </div>
+</div>
+
+<div class="section">
+<h2>Berdasarkan Kelompok Umur</h2>
+<div class="chart-box"><canvas id="umurChart"></canvas></div>
+</div>
+
+<div class="section">
+<h2>Berdasarkan Dusun</h2>
+<div class="chart-box"><canvas id="dusunChart"></canvas></div>
+</div>
+
+<div class="section">
+<h2>Berdasarkan Pendidikan</h2>
+<div class="chart-box"><canvas id="pendidikanChart"></canvas></div>
+</div>
+
+<div class="section">
+<h2>Berdasarkan Pekerjaan</h2>
+<div class="chart-box"><canvas id="pekerjaanChart"></canvas></div>
+</div>
+
+<div class="section">
+<h2>Berdasarkan Wajib Pilih</h2>
+<div class="chart-box"><canvas id="pemilihChart"></canvas></div>
+</div>
+
+<div class="section">
+<h2>Berdasarkan Status Perkawinan</h2>
+<div class="chart-box"><canvas id="kawinChart"></canvas></div>
+</div>
+
+<div class="section">
+<h2>Berdasarkan Agama</h2>
+<div class="chart-box"><canvas id="agamaChart"></canvas></div>
+</div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+<div class="footer-container">
+    <div class="footer-box">
+        <img src="logo wakatobi.png" width="60"><br><br>
+        <strong>Pemerintah Desa Kollo Soha</strong>
+        <p>Desa Kollo Soha, Kecamatan Tomia<br>Kabupaten Wakatobi<br>Sulawesi Tenggara</p>
+        <p><strong>Kode Wilayah:</strong> 74.07.03.2018</p>
+    </div>
+
+    <div class="footer-box">
+        <h4>Hubungi Kami</h4>
+        <p>📞 0823 4666 7030<br>
+           ✉️ desakollosoha400@gmail.com</p>
+    </div>
+
+    <div class="footer-box footer-link">
+        <h4>Jelajahi</h4>
+        <a href="https://www.facebook.com/profile.php?id=100083826504652">Facebook Desa Kollo Soha</a>
+        <a href="https://www.instagram.com/desakollosoha.tomia?igsh=MnFkaDY4ZWF2YnBj">Instagram Desa Kollo Soha</a>
+    </div>
+</div>
+
+<div class="footer-bottom">
+© 2026 Powered by Desa Kollo Soha
+</div>
+</footer>
+
+<script>
+/* ===== DATA DARI ADMIN ===== */
+let data = {
+  penduduk:439, kk:148, lk:211, pr:228,
+  umur:{
+    label:["0-4","5-9","10-14","15-19","20-24","25-29","30-34","35-39","40-44","45-49","50-54","55-59","60-64","65-69","70-74","75-79","80-84","85+"],
+    laki:[12,23,18,18,18,16,17,14,16,9,15,7,7,10,4,2,1,4],
+    perempuan:[11,16,17,25,24,17,12,18,14,13,14,13,6,8,6,4,4,6]
+  },
+  dusun:{label:["Wangkudu","Soha"],data:[319,120]},
+  pendidikan:{label:["Tidak Sekolah","SD","SMP","SMA","PT"],data:[58,72,90,56,113]},
+  pekerjaan:{label:["Belum Bekerja","Pelajar","Petani","IRT","Wiraswasta","Karyawan"],data:[140,72,70,70,25,17]},
+  pemilih:{label:["Wajib Pilih","Belum Wajib"],data:[310,129]},
+  kawin:{label:["Belum Kawin","Kawin","Cerai"],data:[180,230,29]},
+  agama:{label:["Islam","Kristen","Katolik"],data:[430,7,2]}
+};
+
+const simpan = localStorage.getItem("dataPendudukDesa");
+if(simpan) data = JSON.parse(simpan);
+
+/* ===== ISI ANGKA ===== */
+totalPenduduk.innerText=data.penduduk;
+totalKK.innerText=data.kk;
+laki.innerText=data.lk;
+perempuan.innerText=data.pr;
+
+/* ===== CHART ===== */
+new Chart(umurChart,{
+ type:'bar',
+ data:{
+  labels:data.umur.label,
+  datasets:[
+   {label:"Laki-Laki",data:data.umur.laki,backgroundColor:"#4CAF50"},
+   {label:"Perempuan",data:data.umur.perempuan,backgroundColor:"#FFB199"}
+  ]
+ }
+});
+
+new Chart(dusunChart,{type:'pie',data:{labels:data.dusun.label,datasets:[{data:data.dusun.data}]}});
+new Chart(pendidikanChart,{type:'bar',data:{labels:data.pendidikan.label,datasets:[{data:data.pendidikan.data,backgroundColor:"#1E88E5"}]}});
+new Chart(pekerjaanChart,{type:'bar',data:{labels:data.pekerjaan.label,datasets:[{data:data.pekerjaan.data,backgroundColor:"#43A047"}]}});
+new Chart(pemilihChart,{type:'doughnut',data:{labels:data.pemilih.label,datasets:[{data:data.pemilih.data}]}});
+new Chart(kawinChart,{type:'pie',data:{labels:data.kawin.label,datasets:[{data:data.kawin.data}]}});
+new Chart(agamaChart,{type:'pie',data:{labels:data.agama.label,datasets:[{data:data.agama.data}]}});
+
+window.addEventListener('scroll',()=>{
+ document.querySelector('.topbar').classList.toggle('scrolled',scrollY>80);
+});
+
+</script>
+
+</body>
+</html>

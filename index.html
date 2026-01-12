@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beranda • Desa Kollo Soha</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:#f4f6f9;
+    color:#334155;
+}
+
+/* ================= HEADER ================= */
+.topbar{
+    position:fixed;
+    top:0;left:0;right:0;
+    background:#fff;
+    z-index:1000;
+    transition:.3s;
+}
+.topbar.scrolled{
+    background:#024A86;
+    backdrop-filter:blur(8px);
+}
+.topbar-container{
+    max-width:1200px;
+    margin:auto;
+    padding:14px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.brand{display:flex;gap:12px;align-items:center}
+.brand img{width:42px}
+.brand h1{margin:0;font-size:18px;color:#0F4C81}
+.brand span{font-size:12px;color:#64748b}
+.nav-menu{display:flex;gap:12px}
+/* ===== DROPDOWN MENU ===== */
+.dropdown{
+    position:relative;
+}
+
+.dropdown-menu{
+    position:absolute;
+    top:100%;
+    left:0;
+    background:white;
+    min-width:190px;
+    border-radius:10px;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+    display:none;
+    padding:8px 0;
+    z-index:2000;
+}
+
+.dropdown-menu a{
+    display:block;
+    padding:10px 16px;
+    color:#1f2937;
+    text-decoration:none;
+}
+
+.dropdown-menu a:hover{
+    background:#f1f5f9;
+}
+
+.dropdown:hover .dropdown-menu{
+    display:block;
+}
+
+.nav-menu a{
+    text-decoration:none;
+    padding:8px 12px;
+    border-radius:8px;
+    color:#1f2937;
+}
+.nav-menu a:hover{background:#e5e7eb}
+.admin-link{background:#FFD700;font-weight:700}
+
+/* ================= HERO ================= */
+.hero{
+    margin-top:70px;
+    padding:160px 20px 120px;
+    background:url('kantor desa.jpeg') center/cover no-repeat;
+    color:white;
+    text-align:center;
+    position:relative;
+}
+.hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+}
+.hero h2,.hero p{position:relative;z-index:1}
+.hero h2{font-size:42px}
+.hero p{max-width:800px;margin:auto;font-size:18px}
+
+/* ================= CONTAINER ================= */
+.container{max-width:1100px;margin:auto;padding:20px}
+.section{margin-top:60px}
+.section h2{color:#003366}
+
+/* ================= BUTTON ================= */
+.btn{
+    display:inline-block;
+    margin-top:14px;
+    padding:10px 18px;
+    border-radius:10px;
+    background:#024A86;
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+}
+
+/* ================= JELAJAHI ================= */
+.jelajahi{text-align:center}
+.jelajahi p{
+    max-width:800px;
+    margin:12px auto;
+    line-height:1.8;
+}
+
+/* ================= SAMBUTAN ================= */
+.sambutan{
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:30px;
+    align-items:center;
+}
+.sambutan img{
+    width:100%;
+    border-radius:14px;
+}
+@media(max-width:768px){
+    .sambutan{grid-template-columns:1fr;text-align:center}
+}
+
+/* ================= ORGANISASI ================= */
+.org-list{
+    display:flex;
+    gap:26px;
+    flex-wrap:wrap;
+}
+.org-item{
+    width:140px;
+    text-align:center;
+}
+.org-item img{
+    width:100%;
+    height:140px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #024A86;
+}
+.org-item h4{margin:10px 0 4px;font-size:15px}
+.org-item span{font-size:13px;color:#64748b}
+
+/* ================= ADMINISTRASI ================= */
+.admin-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-top:20px;
+}
+.admin-item{
+    background:white;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    box-shadow:0 4px 10px rgba(0,0,0,.1);
+}
+.admin-item .angka{
+    background:#024A86;
+    color:white;
+    font-size:34px;
+    font-weight:700;
+    padding:26px;
+    min-width:120px;
+    text-align:center;
+    border-radius:14px 0 0 14px;
+}
+.admin-item span{
+    font-size:17px;
+    font-weight:600;
+}
+
+/* ================= POTENSI ================= */
+.potensi-group{margin-top:40px}
+.potensi-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.potensi-head a{
+    text-decoration:none;
+    font-weight:600;
+    color:#024A86;
+}
+.potensi-slider{
+    display:grid;
+    grid-auto-flow:column;
+    grid-auto-columns:260px;
+    gap:18px;
+    overflow-x:auto;
+    margin-top:14px;
+}
+.potensi-slider img{
+    width:100%;
+    height:170px;
+    object-fit:cover;
+    border-radius:14px;
+}
+
+.potensi-item{
+    text-align:center;
+}
+
+.potensi-item a{
+    text-decoration:none;
+    color:#1f2937;
+    font-weight:600;
+}
+
+.potensi-item span{
+    display:block;
+    margin-top:8px;
+}
+
+.potensi-desc{
+    margin-top:10px;
+    color:#475569;
+}
+
+/* ================= BERITA (HORIZONTAL) ================= */
+#berita{
+    display:grid;
+    grid-auto-flow:column;
+    grid-auto-columns:260px;
+    gap:20px;
+    overflow-x:auto;
+    padding-bottom:6px;
+}
+.berita-card{
+    background:white;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 4px 10px rgba(0,0,0,.15);
+}
+.berita-card img{
+    width:100%;
+    height:160px;
+    object-fit:cover;
+}
+.berita-card .content{
+    padding:14px;
+}
+.berita-card a{
+    text-decoration:none;
+    font-weight:600;
+    color:#024A86;
+}
+
+/* ================= GALERI ================= */
+#galeri{
+    display:grid;
+    grid-auto-flow:column;
+    grid-template-rows:repeat(2,180px);
+    grid-auto-columns:220px;
+    gap:16px;
+    overflow-x:auto;
+}
+#galeri img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:14px;
+    cursor:pointer;
+}
+
+/* ================= FOOTER (DIGITALDESA STYLE) ================= */
+footer{
+    background:#024A86;
+    color:white;
+    padding:50px 20px 30px;
+}
+.footer-container{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+.footer-box h4{
+    margin-top:0;
+    color:white;
+}
+.footer-box p{
+    line-height:1.7;
+}
+.footer-link a{
+    display:block;
+    color:white;
+    text-decoration:underline;
+    margin-bottom:10px;
+}
+.footer-social a{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:white;
+    text-decoration:none;
+    margin-bottom:10px;
+}
+.footer-social img{width:18px}
+.footer-bottom{
+    text-align:center;
+    margin-top:30px;
+    font-size:14px;
+    opacity:.9;
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+<div class="topbar-container">
+    <div class="brand">
+        <img src="logo wakatobi.png">
+        <div>
+            <h1>Desa Kollo Soha</h1>
+            <span>Kecamatan Tomia · Kabupaten Wakatobi</span>
+        </div>
+    </div>
+    <nav class="nav-menu">
+        <a href="index.html">Beranda</a>
+        <a href="profil.html" class="active">Profil</a>
+        <a href="infografis.html">Infografis</a>
+<div class="dropdown">
+        <a href="pemerintahan.html">Pemerintahan ▾</a>
+        <div class="dropdown-menu">
+            <a href="pemerintahan.html">Pemerintahan Desa</a>
+            <a href="bumdes.html">BUMDes</a>
+        </div>
+    </div>       
+    <div class="dropdown">
+        <a href="potensi.html">Potensi ▾</a>
+        <div class="dropdown-menu">
+            <a href="wisata.html">Wisata Desa</a>
+            <a href="umkm.html">UMKM Desa</a>
+        </div>
+    </div>
+        <a href="admin.html" class="admin-link">Admin</a>
+
+    </nav>
+</div>
+</header>
+
+<section class="hero">
+<h2>Selamat Datang di Desa Kollo Soha</h2>
+<p>Website resmi Pemerintah Desa Kollo Soha sebagai pusat informasi dan pelayanan publik.</p>
+</section>
+
+<div class="container">
+
+<section class="section jelajahi">
+<h2>Jelajahi Desa Kollo Soha</h2>
+<p>Mengenal pemerintahan desa, potensi wisata, serta kegiatan masyarakat.</p>
+</section>
+
+<section class="section">
+<h2>Sambutan Kepala Desa</h2>
+<div class="sambutan">
+    <img src="struktur/kades.jpeg">
+    <div>
+        <strong>Sahirun, S.Pd</strong><br>Kepala Desa Kollo Soha
+        <p>Assalamu’alaikum Warahmatullahi Wabarakatuh. Selamat datang di website resmi Desa Kollo Soha.</p>
+    </div>
+</div>
+</section>
+
+<section class="section">
+<h2>Struktur Organisasi Desa</h2>
+<div class="org-list">
+    <div class="org-item">
+        <img src="struktur/kades.jpeg">
+        <h4>Sahirun, S.Pd</h4>
+        <span>Kepala Desa</span>
+    </div>
+    <div class="org-item">
+        <img src="struktur/sekdes.jpeg">
+        <h4>Kasmin, S.Pd</h4>
+        <span>Sekretaris Desa</span>
+    </div>
+        <div class="org-item">
+        <img src="struktur/afni.jpeg">
+        <h4>Nur Afni</h4>
+        <span>Kaur TU & Umum</span>
+    </div>
+    <div class="org-item">
+        <img src="struktur/nurmiyati.png">
+        <h4>Nurmiyati</h4>
+        <span>Kaur Keuangan</span>
+    </div>
+
+</div>
+<a href="pemerintahan.html" class="btn">Lihat Selengkapnya</a>
+</section>
+
+<section class="section">
+<h2>Administrasi Penduduk</h2>
+<div class="admin-grid">
+    <div class="admin-item"><div class="angka">439</div><span>Penduduk</span></div>
+    <div class="admin-item"><div class="angka">148</div><span>Kepala Keluarga</span></div>
+    <div class="admin-item"><div class="angka">211</div><span>Laki-laki</span></div>
+    <div class="admin-item"><div class="angka">228</div><span>Perempuan</span></div>
+</div>
+<a href="infografis.html" class="btn">Lihat Infografis Lengkap</a>
+</section>
+
+<section class="section">
+<h2>Potensi Desa Kollo Soha</h2>
+
+<div class="potensi-group">
+    <div class="potensi-head">
+        <h3>🌴 Wisata Desa</h3>
+        <a href="wisata.html">Lihat Semua →</a>
+    </div>
+    <div class="potensi-slider">
+
+    <div class="potensi-item">
+        <a href="wisata-hondue.html">
+            <img src="wisata/hondue.jpeg">
+            <span>Pantai Hondue</span>
+        </a>
+    </div>
+
+    <div class="potensi-item">
+        <a href="wisata-soha.html">
+            <img src="wisata/soha.jpeg">
+            <span>Pantai Soha</span>
+        </a>
+    </div>
+
+</div>
+
+</div>
+
+<div class="potensi-group">
+    <div class="potensi-head">
+        <h3>🛍️ UMKM Desa</h3>
+        <a href="umkm.html">Lihat UMKM →</a>
+    </div>
+   <div class="potensi-slider">
+
+    <div class="potensi-item">
+        <a href="umkm-kuliner.html">
+            <img src="putri hondue.jpeg">
+            <span>UMKM Kuliner</span>
+        </a>
+    </div>
+
+    <div class="potensi-item">
+        <a href="umkm-kerajinan.html">
+            <img src="kerajinan.png">
+            <span>UMKM Kerajinan</span>
+        </a>
+    </div>
+
+    <div class="potensi-item">
+        <a href="umkm-perikanan.html">
+            <img src="ikan asin.jpeg">
+            <span>UMKM Perikanan</span>
+        </a>
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+<h2>Berita Desa</h2>
+<div id="berita">
+    <div class="berita-card">
+        <img src="berita/berita 1.webp">
+        <div class="content">
+            <strong>Taman Nasional Wakatobi salurkan bantuan usaha di Desa Kollo Soha</strong><br>
+            <a href="https://sultra.antaranews.com/berita/485719/taman-nasional-wakatobi-salurkan-bantuan-usaha-di-desa-kollo-soha">Baca selengkapnya →</a>
+        </div>
+    </div>
+    <div class="berita-card">
+        <img src="berita/berita 2.jpg">
+        <div class="content">
+            <strong>Desa Wisata Kollo Soha</strong><br>
+            <a href="https://jadesta.kemenparekraf.go.id/desa/kollo_soha">Baca selengkapnya →</a>
+        </div>
+    </div>
+    <div class="berita-card">
+        <img src="berita/berita 3.jpeg">
+        <div class="content">
+            <strong>Keindahan Pasir Putih Pantai Hondue di Desa Kollo Soha Pulau Tomia</strong><br>
+            <a href="https://telisik.id/news/keindahan-pasir-putih-pantai-hondue-di-desa-kollo-soha-pulau-tomia">Baca selengkapnya →</a>
+        </div>
+    </div>
+    <div class="berita-card">
+        <img src="berita/berita 4.jpg">
+        <div class="content">
+            <strong>Desa Wisata Kollo Soha Wakatobi Tetap Asri Meski Dibangun Pelabuhan Ferry</strong><br>
+            <a href="https://telisik.id/news/desa-wisata-kollo-soha-wakatobi-tetap-asri-meski-dibangun-pelabuhan-ferry">Baca selengkapnya →</a>
+        </div>
+    </div>
+</div>
+</section>
+
+<section class="section">
+<h2>Galeri Kegiatan Desa</h2>
+<div id="galeri">
+    <img src="Galeri/kegiatan 1.jpg">
+    <img src="Galeri/kegiatan 2.jpg">
+    <img src="Galeri/kegiatan 3.jpg">
+    <img src="Galeri/kegiatan 4.jpg">
+    <img src="Galeri/kegiatan 5.jpg">
+    <img src="Galeri/kegiatan 6.jpg">
+    <img src="Galeri/kegiatan 7.jpg">
+    <img src="Galeri/kegiatan 8.jpg">
+    <img src="Galeri/kegiatan 8.jpg">
+    <img src="Galeri/kegiatan 8.jpg">
+    <img src="Galeri/kegiatan 8.jpg">
+    <img src="Galeri/kegiatan 8.jpg">
+</div>
+</section>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+<div class="footer-container">
+    <div class="footer-box">
+        <img src="logo wakatobi.png" width="60"><br><br>
+        <strong>Pemerintah Desa Kollo Soha</strong>
+        <p>Desa Kollo Soha, Kecamatan Tomia<br>Kabupaten Wakatobi<br>Sulawesi Tenggara</p>
+        <p><strong>Kode Wilayah:</strong> 74.07.03.2018</p>
+    </div>
+
+    <div class="footer-box">
+        <h4>Hubungi Kami</h4>
+        <p>📞 0823 4666 7030<br>
+           ✉️ desakollosoha400@gmail.com</p>
+    </div>
+
+    <div class="footer-box footer-link">
+        <h4>Jelajahi</h4>
+        <a href="https://www.facebook.com/profile.php?id=100083826504652">Facebook Desa Kollo Soha</a>
+        <a href="https://www.instagram.com/desakollosoha.tomia?igsh=MnFkaDY4ZWF2YnBj">Instagram Desa Kollo Soha</a>
+        
+    </div>
+</div>
+
+<div class="footer-bottom">
+© 2026 Powered by Desa Kollo Soha
+</div>
+</footer>
+
+<script>
+/* ================= HEADER SCROLL ================= */
+window.addEventListener('scroll',()=>{
+  document.querySelector('.topbar')
+    .classList.toggle('scrolled',scrollY>80);
+});
+
+/* ================= ADMINISTRASI ================= */
+const data = JSON.parse(localStorage.getItem("dataPendudukDesa"));
+if(data){
+  const angka = document.querySelectorAll('.admin-item .angka');
+  if(angka.length >= 4){
+    angka[0].innerText = data.penduduk;
+    angka[1].innerText = data.kk;
+    angka[2].innerText = data.lk;
+    angka[3].innerText = data.pr;
+  }
+}
+
+<!-- ================= BERITA DESA ================= -->
+const beritaData = JSON.parse(localStorage.getItem("dataBerita")) || [];
+const beritaWrap = document.getElementById("berita");
+
+if (beritaWrap && beritaData.length) {
+  beritaWrap.innerHTML = "";
+  beritaData.slice(0, 6).forEach(b => {
+    beritaWrap.innerHTML += `
+      <div class="berita-card">
+        <img src="${b.gambar}">
+        <div class="content">
+          <strong>${b.judul}</strong><br>
+          <a href="${b.link}" target="_blank" rel="noopener">
+            Baca selengkapnya →
+          </a>
+        </div>
+      </div>
+    `;
+  });
+}
+
+/* ================= GALERI DESA ================= */
+const galeriData = JSON.parse(localStorage.getItem("dataGaleri")) || [];
+const galeriWrap = document.getElementById("galeri");
+
+if(galeriWrap && galeriData.length){
+  galeriWrap.innerHTML = "";
+  galeriData.slice(0,10).forEach(g=>{
+    galeriWrap.innerHTML += `
+      <img src="${g.foto}" alt="${g.judul}">
+    `;
+  });
+}
+
+/* ================= WISATA DESA (OPSIONAL AUTO) ================= */
+/* TIDAK DIPAKSA, karena kamu sudah pakai manual card */
+
+/* ================= UMKM DESA (OPSIONAL AUTO) ================= */
+/* TIDAK DIPAKSA, karena kamu sudah pakai manual card */
+</script>
+
+</body>
+</html>

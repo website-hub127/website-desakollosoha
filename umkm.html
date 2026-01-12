@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UMKM Desa • Desa Kollo Soha</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:#f4f6f9;
+    color:#334155;
+}
+
+/* ================= HEADER ================= */
+.topbar{
+    position:fixed;
+    top:0;left:0;right:0;
+    background:#fff;
+    z-index:1000;
+    transition:.3s;
+}
+.topbar.scrolled{
+    background:#024A86;
+    backdrop-filter:blur(8px);
+}
+.topbar-container{
+    max-width:1200px;
+    margin:auto;
+    padding:14px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.brand{display:flex;gap:12px;align-items:center}
+.brand img{width:42px}
+.brand h1{margin:0;font-size:18px;color:#0F4C81}
+.brand span{font-size:12px;color:#64748b}
+.nav-menu{display:flex;gap:12px}
+/* ===== DROPDOWN MENU ===== */
+.dropdown{
+    position:relative;
+}
+
+.dropdown-menu{
+    position:absolute;
+    top:100%;
+    left:0;
+    background:white;
+    min-width:190px;
+    border-radius:10px;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+    display:none;
+    padding:8px 0;
+    z-index:2000;
+}
+
+.dropdown-menu a{
+    display:block;
+    padding:10px 16px;
+    color:#1f2937;
+    text-decoration:none;
+}
+
+.dropdown-menu a:hover{
+    background:#f1f5f9;
+}
+
+.dropdown:hover .dropdown-menu{
+    display:block;
+}
+
+.nav-menu a{
+    text-decoration:none;
+    padding:8px 12px;
+    border-radius:8px;
+    color:#1f2937;
+}
+.nav-menu a:hover{background:#e5e7eb}
+.admin-link{background:#FFD700;font-weight:700}
+
+.container{max-width:1100px;margin:auto;padding:40px 20px}
+.section{background:white;padding:30px;border-radius:14px;margin-bottom:30px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.umkm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.umkm-card img{width:100%;height:180px;object-fit:cover;border-radius:12px}
+.umkm-card h3{margin:10px 0 6px;color:#024A86}
+.umkm-card p{font-size:14px}
+
+/* ================= FOOTER (DIGITALDESA STYLE) ================= */
+footer{
+    background:#024A86;
+    color:white;
+    padding:50px 20px 30px;
+}
+.footer-container{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+.footer-box h4{
+    margin-top:0;
+    color:white;
+}
+.footer-box p{
+    line-height:1.7;
+}
+.footer-link a{
+    display:block;
+    color:white;
+    text-decoration:underline;
+    margin-bottom:10px;
+}
+.footer-social a{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:white;
+    text-decoration:none;
+    margin-bottom:10px;
+}
+.footer-social img{width:18px}
+.footer-bottom{
+    text-align:center;
+    margin-top:30px;
+    font-size:14px;
+    opacity:.9;
+}
+
+</style>
+</head>
+
+<body>
+
+    <header class="topbar">
+<div class="topbar-container">
+    <div class="brand">
+        <img src="logo wakatobi.png">
+        <div>
+            <h1>Desa Kollo Soha</h1>
+            <span>Kecamatan Tomia · Kabupaten Wakatobi</span>
+        </div>
+    </div>
+    <nav class="nav-menu">
+        <a href="index.html">Beranda</a>
+        <a href="profil.html" class="active">Profil</a>
+        <a href="infografis.html">Infografis</a>
+<div class="dropdown">
+        <a href="pemerintahan.html">Pemerintahan ▾</a>
+        <div class="dropdown-menu">
+            <a href="pemerintahan.html">Pemerintahan Desa</a>
+            <a href="bumdes.html">BUMDes</a>
+        </div>
+    </div>       
+    <div class="dropdown">
+        <a href="potensi.html">Potensi ▾</a>
+        <div class="dropdown-menu">
+            <a href="wisata.html">Wisata Desa</a>
+            <a href="umkm.html">UMKM Desa</a>
+        </div>
+    </div>
+        <a href="admin.html" class="admin-link">Admin</a>
+
+    </nav>
+</div>
+</header>
+
+
+<div class="container">
+
+<div class="section">
+<h2>UMKM Desa Kollo Soha</h2>
+<p>Berikut adalah UMKM unggulan yang dikelola oleh masyarakat Desa Kollo Soha.</p>
+</div>
+
+<div class="umkm-grid">
+
+<div class="section umkm-card">
+  <a href="umkm-kuliner.html">
+    <img src="putri hondue.jpeg" alt="Sambal Ikan Asin">
+  </a>
+  <h3>Sambal Ikan Asin</h3>
+  <p>
+    Produk olahan ikan Asin yang dibuat oleh komunitas
+    Ibu-ibu Desa Kollo Soha. Komunitas ini bernama "Putri Hondue"
+  </p>
+</div>
+
+<div class="section umkm-card">
+  <a href="umkm-kerajinan.html">
+    <img src="kerajinan.png" alt="Sambal Ikan Asin">
+  </a>
+  <h3>Kerajinan Kayu</h3>
+  <p>
+    Berbagai produk kerajinan tangan yang dibuat dari kayu. Produk kerajinan ini diolah oleh "Cantika Kreatif"
+  </p>
+</div>
+
+<div class="section umkm-card">
+  <a href="umkm-perikanan.html">
+    <img src="ikan asin.jpeg" alt="Sambal Ikan Asin">
+  </a>
+  <h3>Sambal Ikan Asin</h3>
+  <p>
+    Produk perikanan Desa Kollo Soha yang diolah oleh warga dari ikan segar yang dikeringkan.
+  </p>
+</div>
+
+</div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+<div class="footer-container">
+    <div class="footer-box">
+        <img src="logo wakatobi.png" width="60"><br><br>
+        <strong>Pemerintah Desa Kollo Soha</strong>
+        <p>Desa Kollo Soha, Kecamatan Tomia<br>Kabupaten Wakatobi<br>Sulawesi Tenggara</p>
+        <p><strong>Kode Wilayah:</strong> 74.07.03.2018</p>
+    </div>
+
+    <div class="footer-box">
+        <h4>Hubungi Kami</h4>
+        <p>📞 0823 4666 7030<br>
+           ✉️ desakollosoha400@gmail.com</p>
+    </div>
+
+    <div class="footer-box footer-link">
+        <h4>Jelajahi</h4>
+    <div class="footer-box footer-link">
+        <h4>Jelajahi</h4>
+        <a href="https://www.facebook.com/profile.php?id=100083826504652">Facebook Desa Kollo Soha</a>
+        <a href="https://www.instagram.com/desakollosoha.tomia?igsh=MnFkaDY4ZWF2YnBj">Instagram Desa Kollo Soha</a>
+    </div>
+</div>
+
+<div class="footer-bottom">
+© 2026 Powered by Desa Kollo Soha
+</div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{
+ document.querySelector('.topbar').classList.toggle('scrolled',scrollY>80);
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Admin • Desa Kollo Soha</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:"Segoe UI",Arial,sans-serif;
+ background:#f4f6f9;
+ color:#334155;
+}
+
+/* HEADER */
+header{
+ background:#024A86;
+ color:white;
+ padding:16px 20px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ position:sticky;
+ top:0;
+ z-index:3000;
+}
+
+header h1{margin:0;font-size:22px}
+
+.logout-btn{
+ background:#ef4444 !important;
+ padding:8px 14px !important;
+ font-size:14px !important;
+ position:relative;
+ z-index:2000;
+}
+
+/* CONTAINER */
+.container{
+ max-width:1200px;
+ margin:auto;
+ padding:30px 20px;
+}
+
+/* SECTION */
+.section{
+ background:white;
+ padding:26px;
+ border-radius:16px;
+ margin-bottom:30px;
+ box-shadow:0 8px 18px rgba(0,0,0,.08);
+}
+.section h2{
+ margin-top:0;
+ color:#024A86;
+ border-left:6px solid #024A86;
+ padding-left:12px;
+}
+
+/* GRID */
+.grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+ gap:18px;
+}
+label{font-weight:600;font-size:14px}
+input{
+ width:100%;
+ padding:10px;
+ border-radius:10px;
+ border:1px solid #cbd5e1;
+ margin-top:6px;
+}
+
+/* BUTTON */
+button{
+ background:#024A86;
+ color:white;
+ padding:12px 20px;
+ border:none;
+ border-radius:12px;
+ font-size:15px;
+ font-weight:600;
+ cursor:pointer;
+ display:inline-block;
+}
+button:hover{background:#013b6b}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Dashboard Admin – Infografis Penduduk</h1>
+  <button class="logout-btn" onclick="logout()">Logout</button>
+</header>
+
+<div class="container">
+
+<!-- STAT UTAMA -->
+<div class="section">
+<h2>Statistik Utama</h2>
+<div class="grid">
+ <div><label>Total Penduduk</label><input id="penduduk"></div>
+ <div><label>Kepala Keluarga</label><input id="kk"></div>
+ <div><label>Laki-laki</label><input id="lk"></div>
+ <div><label>Perempuan</label><input id="pr"></div>
+</div>
+</div>
+
+<!-- UMUR -->
+<div class="section">
+<h2>Kelompok Umur</h2>
+<div class="grid">
+ <input id="u1" placeholder="0-4">
+ <input id="u2" placeholder="5-9">
+ <input id="u3" placeholder="10-14">
+ <input id="u4" placeholder="15-19">
+ <input id="u5" placeholder="20-24">
+ <input id="u6" placeholder="25-29">
+ <input id="u7" placeholder="30-34">
+ <input id="u8" placeholder="35-39">
+ <input id="u9" placeholder="40-44">
+ <input id="u10" placeholder="45-49">
+ <input id="u11" placeholder="50-54">
+ <input id="u12" placeholder="55-59">
+ <input id="u13" placeholder="60-64">
+ <input id="u14" placeholder="65-69">
+ <input id="u15" placeholder="70-74">
+ <input id="u16" placeholder="75-79">
+ <input id="u17" placeholder="80-84">
+ <input id="u18" placeholder="85+">
+</div>
+</div>
+
+<!-- DUSUN -->
+<div class="section">
+<h2>Berdasarkan Dusun</h2>
+<div class="grid">
+ <div><label>Dusun Wangkudu</label><input id="dusun1"></div>
+ <div><label>Dusun Soha</label><input id="dusun2"></div>
+</div>
+</div>
+
+<!-- PENDIDIKAN -->
+<div class="section">
+<h2>Pendidikan</h2>
+<div class="grid">
+ <input id="p1" placeholder="Tidak Sekolah">
+ <input id="p2" placeholder="SD">
+ <input id="p3" placeholder="SMP">
+ <input id="p4" placeholder="SMA">
+ <input id="p5" placeholder="Perguruan Tinggi">
+</div>
+</div>
+
+<!-- PEKERJAAN -->
+<div class="section">
+<h2>Pekerjaan</h2>
+<div class="grid">
+ <input id="k1" placeholder="Belum Bekerja">
+ <input id="k2" placeholder="Pelajar">
+ <input id="k3" placeholder="Petani">
+ <input id="k4" placeholder="IRT">
+ <input id="k5" placeholder="Wiraswasta">
+ <input id="k6" placeholder="Karyawan">
+</div>
+</div>
+
+<!-- PEMILIH -->
+<div class="section">
+<h2>Wajib Pilih</h2>
+<div class="grid">
+ <input id="wp1" placeholder="Wajib Pilih">
+ <input id="wp2" placeholder="Belum Wajib">
+</div>
+</div>
+
+<!-- PERKAWINAN -->
+<div class="section">
+<h2>Status Perkawinan</h2>
+<div class="grid">
+ <input id="kw1" placeholder="Belum Kawin">
+ <input id="kw2" placeholder="Kawin">
+ <input id="kw3" placeholder="Cerai">
+</div>
+</div>
+
+<!-- AGAMA -->
+<div class="section">
+<h2>Agama</h2>
+<div class="grid">
+ <input id="a1" placeholder="Islam">
+ <input id="a2" placeholder="Kristen">
+ <input id="a3" placeholder="Katolik">
+</div>
+</div>
+
+<button onclick="simpan()">💾 Simpan Data Infografis</button>
+
+</div>
+
+<div class="container">
+
+<!-- ================= BERITA ================= -->
+<div class="section">
+<h2>📰 Kelola Berita</h2>
+<div class="grid">
+<input id="judulBerita" placeholder="Judul Berita">
+<input id="linkBerita" placeholder="Link Berita (Antara, Telisik, dll)">
+<input type="file" id="gambarBerita" accept="image/*">
+<textarea id="isiBerita" placeholder="Ringkasan Berita"></textarea>
+</div>
+<br>
+<button onclick="simpanBerita()">Simpan Berita</button>
+<ul id="listBerita"></ul>
+</div>
+
+<!-- ================= GALERI ================= -->
+<div class="section">
+<h2>📸 Galeri Desa</h2>
+<div class="grid">
+<input id="judulGaleri" placeholder="Judul Kegiatan">
+<input type="file" id="fotoGaleri" accept="image/*">
+</div>
+<br>
+<button onclick="simpanGaleri()">Simpan Galeri</button>
+<ul id="listGaleri"></ul>
+</div>
+
+  <div class="section">
+  <h2>🏛️ Struktur Organisasi Desa</h2>
+  <div class="grid">
+    <input id="namaOrg" placeholder="Nama">
+    <input id="jabatanOrg" placeholder="Jabatan">
+    <input type="file" id="fotoOrg" accept="image/*">
+  </div>
+  <br>
+  <button onclick="simpanOrg()">Simpan Struktur</button>
+  <ul id="listOrg"></ul>
+</div>
+
+<div class="section">
+  <h2>📜 Produk Hukum Desa</h2>
+  <div class="grid">
+    <input id="judulHukum" placeholder="Judul Produk Hukum">
+    <input id="nomorHukum" placeholder="Nomor / Tahun">
+    <input type="file" id="fileHukum" accept=".pdf,.doc,.docx">
+  </div>
+  <br>
+  <button onclick="simpanHukum()">Simpan Produk Hukum</button>
+  <ul id="listHukum"></ul>
+</div>
+
+
+</div>
+
+<script>
+/* ================== AUTH ================== */
+/* ================== CEK LOGIN ================== */
+document.addEventListener("DOMContentLoaded", () => {
+  if (localStorage.getItem("loginAdmin") !== "true") {
+    location.replace("login.html");
+  }
+});
+
+/* ================== LOGOUT (GLOBAL) ================== */
+function logout() {
+  localStorage.removeItem("loginAdmin");
+  localStorage.removeItem("adminUser");
+  location.replace("login.html");
+}
+
+/* ================== HELPER ================== */
+function val(id){ return Number(document.getElementById(id).value || 0); }
+
+/* ================== INFOGRAFIS (JANGAN DIUBAH) ================== */
+function simpan(){
+  const data = {
+    penduduk: val("penduduk"),
+    kk: val("kk"),
+    lk: val("lk"),
+    pr: val("pr"),
+    umur:{
+      label:["0-4","5-9","10-14","15-19","20-24","25-29","30-34","35-39","40-44","45-49","50-54","55-59","60-64","65-69","70-74","75-79","80-84","85+"],
+      laki:Array.from({length:18},(_,i)=>val("u"+(i+1))),
+      perempuan:Array.from({length:18},(_,i)=>val("u"+(i+1)))
+    },
+    dusun:{ label:["Wangkudu","Soha"], data:[val("dusun1"),val("dusun2")] },
+    pendidikan:{ label:["Tidak Sekolah","SD","SMP","SMA","PT"], data:[val("p1"),val("p2"),val("p3"),val("p4"),val("p5")] },
+    pekerjaan:{ label:["Belum Bekerja","Pelajar","Petani","IRT","Wiraswasta","Karyawan"], data:[val("k1"),val("k2"),val("k3"),val("k4"),val("k5"),val("k6")] },
+    pemilih:{ label:["Wajib Pilih","Belum Wajib"], data:[val("wp1"),val("wp2")] },
+    kawin:{ label:["Belum Kawin","Kawin","Cerai"], data:[val("kw1"),val("kw2"),val("kw3")] },
+    agama:{ label:["Islam","Kristen","Katolik"], data:[val("a1"),val("a2"),val("a3")] }
+  };
+  localStorage.setItem("dataPendudukDesa", JSON.stringify(data));
+  alert("✅ Data infografis tersimpan");
+}
+
+/* ====================== BERITA ======================= */
+let berita = [];
+let editBeritaIndex = null;
+
+try {
+  berita = JSON.parse(localStorage.getItem("dataBerita")) || [];
+} catch(e){
+  berita = [];
+}
+
+/* SIMPAN BERITA */
+function simpanBerita(){
+  const judul = judulBerita.value.trim();
+  const ringkas = isiBerita.value.trim();
+  const link = linkBerita.value.trim();
+
+  if(!judul) return alert("Judul wajib diisi");
+
+  const simpanData = (gambar)=>{
+    const data = { judul, ringkas, gambar, link };
+
+    if(editBeritaIndex !== null){
+      berita[editBeritaIndex] = data;
+      editBeritaIndex = null;
+    } else {
+      berita.push(data);
+    }
+
+    localStorage.setItem("dataBerita", JSON.stringify(berita));
+    judulBerita.value = isiBerita.value = linkBerita.value = "";
+    gambarBerita.value = "";
+    tampilBerita();
+  };
+
+  if(gambarBerita.files[0]){
+    const r = new FileReader();
+    r.onload = () => simpanData(r.result);
+    r.readAsDataURL(gambarBerita.files[0]);
+  } else if(editBeritaIndex !== null){
+    simpanData(berita[editBeritaIndex].gambar);
+  } else {
+    alert("Pilih gambar");
+  }
+}
+
+/* TAMPIL BERITA */
+function tampilBerita(){
+  listBerita.innerHTML = "";
+  berita.forEach((b,i)=>{
+    listBerita.innerHTML += `
+      <li>
+        <strong>${b.judul}</strong><br>
+        <button onclick="editBerita(${i})">✏️ Edit</button>
+        <button onclick="hapusBerita(${i})" style="background:#ef4444">🗑️ Hapus</button>
+      </li>
+    `;
+  });
+}
+
+/* EDIT */
+function editBerita(i){
+  judulBerita.value = berita[i].judul;
+  isiBerita.value = berita[i].ringkas;
+  linkBerita.value = berita[i].link || "";
+  editBeritaIndex = i;
+}
+
+/* HAPUS */
+function hapusBerita(i){
+  if(confirm("Hapus berita ini?")){
+    berita.splice(i,1);
+    localStorage.setItem("dataBerita", JSON.stringify(berita));
+    tampilBerita();
+  }
+}
+
+tampilBerita();
+
+/* ====================== GALERI ======================= */
+let galeri = [];
+let editGaleriIndex = null;
+
+try{
+  galeri = JSON.parse(localStorage.getItem("dataGaleri")) || [];
+}catch(e){
+  galeri = [];
+}
+
+/* SIMPAN */
+function simpanGaleri(){
+  const judul = judulGaleri.value.trim();
+  if(!judul) return alert("Judul wajib diisi");
+
+  const simpanData = (foto)=>{
+    const data = { judul, foto };
+
+    if(editGaleriIndex !== null){
+      galeri[editGaleriIndex] = data;
+      editGaleriIndex = null;
+    } else {
+      galeri.push(data);
+    }
+
+    localStorage.setItem("dataGaleri", JSON.stringify(galeri));
+    judulGaleri.value = "";
+    fotoGaleri.value = "";
+    tampilGaleri();
+  };
+
+  if(fotoGaleri.files[0]){
+    const r = new FileReader();
+    r.onload = ()=> simpanData(r.result);
+    r.readAsDataURL(fotoGaleri.files[0]);
+  } else if(editGaleriIndex !== null){
+    simpanData(galeri[editGaleriIndex].foto);
+  } else {
+    alert("Pilih foto");
+  }
+}
+
+/* TAMPIL */
+function tampilGaleri(){
+  listGaleri.innerHTML = "";
+  galeri.forEach((g,i)=>{
+    listGaleri.innerHTML += `
+      <li>
+        ${g.judul}
+        <button onclick="editGaleri(${i})">✏️</button>
+        <button onclick="hapusGaleri(${i})" style="background:#ef4444">🗑️</button>
+      </li>
+    `;
+  });
+}
+
+function editGaleri(i){
+  judulGaleri.value = galeri[i].judul;
+  editGaleriIndex = i;
+}
+
+function hapusGaleri(i){
+  if(confirm("Hapus galeri ini?")){
+    galeri.splice(i,1);
+    localStorage.setItem("dataGaleri", JSON.stringify(galeri));
+    tampilGaleri();
+  }
+}
+
+tampilGaleri();
+
+/* ====================== WISATA ======================= */
+let wisata = JSON.parse(localStorage.getItem("dataWisata")) || [];
+let editWisataIndex = null;
+
+function simpanWisata(){
+  const nama = namaWisata.value.trim();
+  const desk = deskripsiWisata.value.trim();
+  if(!nama) return alert("Nama wajib");
+
+  const simpan = (foto)=>{
+    const data = { nama, deskripsi:desk, foto };
+    if(editWisataIndex!==null){
+      wisata[editWisataIndex]=data;
+      editWisataIndex=null;
+    } else wisata.push(data);
+
+    localStorage.setItem("dataWisata", JSON.stringify(wisata));
+    namaWisata.value = deskripsiWisata.value = "";
+    fotoWisata.value = "";
+    tampilWisata();
+  };
+
+  if(fotoWisata.files[0]){
+    const r=new FileReader();
+    r.onload=()=>simpan(r.result);
+    r.readAsDataURL(fotoWisata.files[0]);
+  } else if(editWisataIndex!==null){
+    simpan(wisata[editWisataIndex].foto);
+  } else alert("Pilih foto");
+}
+
+function tampilWisata(){
+  listWisata.innerHTML="";
+  wisata.forEach((w,i)=>{
+    listWisata.innerHTML+=`
+      <li>${w.nama}
+        <button onclick="editWisata(${i})">✏️</button>
+        <button onclick="hapusWisata(${i})" style="background:#ef4444">🗑️</button>
+      </li>`;
+  });
+}
+function editWisata(i){
+  namaWisata.value = wisata[i].nama;
+  deskripsiWisata.value = wisata[i].deskripsi;
+  editWisataIndex=i;
+}
+function hapusWisata(i){
+  if(confirm("Hapus wisata?")){
+    wisata.splice(i,1);
+    localStorage.setItem("dataWisata", JSON.stringify(wisata));
+    tampilWisata();
+  }
+}
+tampilWisata();
+
+/* ====================== UMKM ========================= */
+let umkm = JSON.parse(localStorage.getItem("dataUMKM")) || [];
+let editUMKMIndex = null;
+
+function simpanUMKM(){
+  const nama = namaUMKM.value.trim();
+  const pemilik = pemilikUMKM.value.trim();
+  const desk = deskripsiUMKM.value.trim();
+  if(!nama) return alert("Nama wajib");
+
+  const simpan = (foto)=>{
+    const data = { nama, pemilik, deskripsi:desk, foto };
+    if(editUMKMIndex!==null){
+      umkm[editUMKMIndex]=data;
+      editUMKMIndex=null;
+    } else umkm.push(data);
+
+    localStorage.setItem("dataUMKM", JSON.stringify(umkm));
+    namaUMKM.value = pemilikUMKM.value = deskripsiUMKM.value = "";
+    fotoUMKM.value = "";
+    tampilUMKM();
+  };
+
+  if(fotoUMKM.files[0]){
+    const r=new FileReader();
+    r.onload=()=>simpan(r.result);
+    r.readAsDataURL(fotoUMKM.files[0]);
+  } else if(editUMKMIndex!==null){
+    simpan(umkm[editUMKMIndex].foto);
+  } else alert("Pilih foto");
+}
+
+function tampilUMKM(){
+  listUMKM.innerHTML="";
+  umkm.forEach((u,i)=>{
+    listUMKM.innerHTML+=`
+      <li>${u.nama} – ${u.pemilik}
+        <button onclick="editUMKM(${i})">✏️</button>
+        <button onclick="hapusUMKM(${i})" style="background:#ef4444">🗑️</button>
+      </li>`;
+  });
+}
+function editUMKM(i){
+  namaUMKM.value = umkm[i].nama;
+  pemilikUMKM.value = umkm[i].pemilik;
+  deskripsiUMKM.value = umkm[i].deskripsi;
+  editUMKMIndex=i;
+}
+function hapusUMKM(i){
+  if(confirm("Hapus UMKM?")){
+    umkm.splice(i,1);
+    localStorage.setItem("dataUMKM", JSON.stringify(umkm));
+    tampilUMKM();
+  }
+}
+tampilUMKM();
+
+/* ================== struktur organisasi ================== */
+let struktur = JSON.parse(localStorage.getItem("dataStruktur")) || [];
+let editOrgIndex = null;
+
+function simpanOrg(){
+  const nama = namaOrg.value.trim();
+  const jabatan = jabatanOrg.value.trim();
+
+  if(!nama || !jabatan){
+    alert("Nama dan jabatan wajib diisi");
+    return;
+  }
+
+  const simpanData = (foto)=>{
+    const data = { nama, jabatan, foto };
+
+    if(editOrgIndex !== null){
+      struktur[editOrgIndex] = data;
+      editOrgIndex = null;
+    } else {
+      struktur.push(data);
+    }
+
+    localStorage.setItem("dataStruktur", JSON.stringify(struktur));
+    namaOrg.value = "";
+    jabatanOrg.value = "";
+    fotoOrg.value = "";
+    tampilOrg();
+  };
+
+  if(fotoOrg.files && fotoOrg.files[0]){
+    const reader = new FileReader();
+    reader.onload = () => simpanData(reader.result);
+    reader.readAsDataURL(fotoOrg.files[0]);
+  } else if(editOrgIndex !== null){
+    simpanData(struktur[editOrgIndex].foto);
+  } else {
+    alert("Pilih foto");
+  }
+}
+
+function tampilOrg(){
+  listOrg.innerHTML = "";
+  struktur.forEach((o,i)=>{
+    listOrg.innerHTML += `
+      <li>
+        ${o.nama} – ${o.jabatan}
+        <button onclick="editOrg(${i})">✏️</button>
+        <button onclick="hapusOrg(${i})" style="background:#ef4444">🗑️</button>
+      </li>`;
+  });
+}
+
+function editOrg(i){
+  namaOrg.value = struktur[i].nama;
+  jabatanOrg.value = struktur[i].jabatan;
+  editOrgIndex = i;
+}
+
+function hapusOrg(i){
+  if(confirm("Hapus data struktur ini?")){
+    struktur.splice(i,1);
+    localStorage.setItem("dataStruktur", JSON.stringify(struktur));
+    tampilOrg();
+  }
+}
+
+tampilOrg();
+
+/* ================== poduk hukum ================== */
+let produkHukum = JSON.parse(localStorage.getItem("dataHukum")) || [];
+let editHukumIndex = null;
+
+function simpanProdukHukum(){
+  const judul = judulHukum.value.trim();
+  const nomor = nomorHukum.value.trim();
+  const file = fileHukum.files[0];
+
+  if(!judul || !nomor || (!file && editHukumIndex === null)){
+    alert("⚠️ Lengkapi data produk hukum");
+    return;
+  }
+
+  const simpan = (fileData)=>{
+    const data = {
+      judul,
+      nomor,
+      file: fileData
+    };
+
+    if(editHukumIndex !== null){
+      produkHukum[editHukumIndex] = data;
+      editHukumIndex = null;
+    } else {
+      produkHukum.push(data);
+    }
+
+    localStorage.setItem("dataHukum", JSON.stringify(produkHukum));
+
+    judulHukum.value = "";
+    nomorHukum.value = "";
+    fileHukum.value = "";
+
+    tampilProdukHukum();
+    alert("✅ Produk hukum berhasil disimpan");
+  };
+
+  // ⬇️ JIKA ADA FILE BARU
+  if(file){
+    const reader = new FileReader();
+    reader.onload = () => simpan(reader.result);
+    reader.readAsDataURL(file);
+  } 
+  // ⬇️ JIKA EDIT TANPA GANTI FILE
+  else {
+    simpan(produkHukum[editHukumIndex].file);
+  }
+}
+
+function tampilProdukHukum(){
+  listProdukHukum.innerHTML = "";
+  produkHukum.forEach((h,i)=>{
+    listProdukHukum.innerHTML += `
+      <li>
+        <strong>${h.judul}</strong><br>
+        Nomor: ${h.nomor}<br>
+        <button onclick="editProdukHukum(${i})">✏️ Edit</button>
+        <button onclick="hapusProdukHukum(${i})" style="background:#ef4444">🗑️ Hapus</button>
+      </li>
+    `;
+  });
+}
+
+function editProdukHukum(i){
+  judulHukum.value = produkHukum[i].judul;
+  nomorHukum.value = produkHukum[i].nomor;
+  editHukumIndex = i;
+}
+
+function hapusProdukHukum(i){
+  if(confirm("Hapus produk hukum ini?")){
+    produkHukum.splice(i,1);
+    localStorage.setItem("dataHukum", JSON.stringify(produkHukum));
+    tampilProdukHukum();
+  }
+}
+
+tampilProdukHukum();
+
+</script>
+
+</body>
+</html>
